@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="viktor" context="main">
+        <createIndex indexName="IDX_REFERENCE_CARDS_CREATION_DATE"
+                     tableName="REFERENCE_CARDS"
+                     unique="false">
+            <column name="CREATION_DATE" type="DATETIME"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="2" author="viktor" context="main">
+        <createIndex indexName="IDX_REFERENCE_CARDS_TITLE"
+                     tableName="REFERENCE_CARDS"
+                     unique="false">
+            <column name="TITLE" type="varchar(100)"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

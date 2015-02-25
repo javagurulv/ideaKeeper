@@ -1,0 +1,42 @@
+package lv.javaguru.ideakeeper.config;
+
+import lv.javaguru.ideakeeper.database.DatabaseMigrationService;
+import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
+import java.beans.PropertyVetoException;
+
+/**
+ * Created by Viktor on 25/02/2015.
+ */
+@Configuration
+public class DataSourceConfig {
+
+    @Autowired
+    private DatabaseMigrationService databaseMigrationService;
+
+
+    @Bean(destroyMethod = "close")
+    public DataSource dataSource(
+            @Value("${database.driverClass}") String driver,
+            @Value("${database.jdbcUrl}") String url,
+            @Value("${database.userName}") String user,
+            @Value("${database.password}") String password) throws PropertyVetoException {
+
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(driver);
+        dataSource.setUrl(url);
+        dataSource.setUsername(user);
+        dataSource.setPassword(password);
+        dataSource.setDefaultAutoCommit(false);
+
+        databaseMigrationService.execute(dataSource);
+
+        return dataSource;
+    }
+
+}
