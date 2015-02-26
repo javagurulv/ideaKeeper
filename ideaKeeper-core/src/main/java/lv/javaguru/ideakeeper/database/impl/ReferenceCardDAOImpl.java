@@ -1,7 +1,8 @@
 package lv.javaguru.ideakeeper.database.impl;
 
 import lv.javaguru.ideakeeper.database.ReferenceCardDAO;
-import lv.javaguru.ideakeeper.domain.ReferenceCard;
+import lv.javaguru.ideakeeper.domain.RefCard;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 class ReferenceCardDAOImpl
-        extends CRUDOperationDAOImpl<ReferenceCard, Long>
+        extends CRUDOperationDAOImpl<RefCard, Long>
         implements ReferenceCardDAO {
 
 }
